@@ -28,7 +28,6 @@ SOFTWARE.
 
 */
 
-
 $y = date("Y", time());
 
 function ostern() {
