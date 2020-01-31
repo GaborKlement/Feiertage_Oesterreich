@@ -1,5 +1,4 @@
 <?php
-
 /*
 
 https://github.com/GaborKlement/Feiertage_Oesterreich
@@ -28,11 +27,9 @@ SOFTWARE.
 
 */
 
-$y = date("Y", time());
-
-function ostern() {
+function feiertage() {
     
-    global $y;
+    $y = date("Y", time());
     
     if ($y >= 1900 && $y <= 2099) { $m = 24; $n = 5; } 
     if ($y >= 2100 && $y <= 2199) { $m = 24; $n = 6; }
@@ -54,21 +51,26 @@ function ostern() {
     if ($om == 4 && $ot == 26 ) { $om = 4; $ot = 19; }
     if ($om == 4 && $ot == 25 && $d == 28 && $e == 6 && $a > 10) { $om = 4; $ot = 18; }
     
-    $o = mktime(3,0,0,$om,$ot,$y,-1) + 86400;
-    
-    return $o;
-    
-}
-
-function feiertage() {
-    
-    global $y;
-    
-    $christi_himmelfahrt = strtotime("+38 days", ostern());
+    $ostern = mktime(3,0,0,$om,$ot,$y,-1) + 86400;
+    $christi_himmelfahrt = strtotime("+38 days", $ostern);
     $pfingstmontag       = strtotime("+11 days", $christi_himmelfahrt);
     $fronleichnam        = strtotime("+10 days", $pfingstmontag);
 
-    $feiertagArray = array(mktime(3,0,0,1,1,$y,-1), mktime(3,0,0,1,6,$y,-1), mktime(3,0,0,5,1,$y,-1), mktime(3,0,0,8,15,$y,-1), mktime(3,0,0,10,26,$y,-1), mktime(3,0,0,11,1,$y,-1), mktime(3,0,0,12,8,$y,-1), mktime(3,0,0,12,25,$y,-1), mktime(3,0,0,12,26,$y,-1), ostern(), $christi_himmelfahrt, $pfingstmontag, $fronleichnam);
+    $feiertagArray = array(
+        mktime(3,0,0,1,1,$y,-1),
+        mktime(3,0,0,1,6,$y,-1),
+        mktime(3,0,0,5,1,$y,-1),
+        mktime(3,0,0,8,15,$y,-1),
+        mktime(3,0,0,10,26,$y,-1),
+        mktime(3,0,0,11,1,$y,-1),
+        mktime(3,0,0,12,8,$y,-1),
+        mktime(3,0,0,12,25,$y,-1),
+        mktime(3,0,0,12,26,$y,-1),
+        $ostern,
+        $christi_himmelfahrt,
+        $pfingstmontag,
+        $fronleichnam
+    );
     
     return $feiertagArray;
     
