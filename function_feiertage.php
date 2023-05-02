@@ -5,7 +5,7 @@ https://github.com/GaborKlement/Feiertage_Oesterreich
 
 MIT License
 
-Copyright (c) 2020 Gabor Klement
+Copyright (c) 2020-2023 Gabor Klement
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +27,9 @@ SOFTWARE.
 
 */
 
-function feiertage() {
+function feiertage($year) {
     
-    $y = date("Y", time());
+    if (!empty($year)) { $y = $year; } else { $y = date("Y", time()); }
     
     if ($y >= 1900 && $y <= 2099) { $m = 24; $n = 5; } 
     if ($y >= 2100 && $y <= 2199) { $m = 24; $n = 6; }
